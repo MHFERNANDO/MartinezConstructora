@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Martínez Constructora | Construcción, diseño y acabados</title>
+  <meta name="description" content="Martínez Constructora: construcción de viviendas, proyectos comerciales, remodelaciones y dirección técnica. Ing. Iván Martínez U.">
+  <meta name="theme-color" content="#091221">
+
+  <!-- Open Graph (para que se vea bien al compartir el link por WhatsApp/Facebook) -->
+  <meta property="og:title" content="Martínez Constructora">
+  <meta property="og:description" content="Construcción, diseño y acabados con dirección técnica en cada etapa.">
+  <meta property="og:image" content="assets/img/residencia-render.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="is-loading">
+
+  <!-- ===== Símbolo del logo (se reutiliza en todo el sitio) ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mc-icon" viewBox="0 0 600 600">
+      <rect x="12" y="12" width="576" height="576" rx="44" fill="none" stroke="currentColor" stroke-width="20"/>
+      <g fill="currentColor">
+        <polygon points="35,458 292,92 412,260 282,458 232,458 370,258 292,150 83,458"/>
+        <polygon points="135,458 298,224 328,254 316,266 185,458"/>
+        <polygon points="305,458 430,282 452,305 368,425 495,425 466,378 490,354 565,458"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- ===== Preloader ===== -->
+  <div class="preloader" aria-hidden="true">
+    <svg class="preloader__mark" viewBox="0 0 600 600">
+      <rect class="draw" pathLength="1" x="12" y="12" width="576" height="576" rx="44"/>
+      <polygon class="draw" pathLength="1" points="35,458 292,92 412,260 282,458 232,458 370,258 292,150 83,458"/>
+      <polygon class="draw" pathLength="1" points="135,458 298,224 328,254 316,266 185,458"/>
+      <polygon class="draw" pathLength="1" points="305,458 430,282 452,305 368,425 495,425 466,378 490,354 565,458"/>
+    </svg>
+  </div>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header" id="header">
+    <div class="site-header__inner container">
+      <a href="#inicio" class="brand" aria-label="Martínez Constructora, ir al inicio">
+        <svg class="brand__icon" aria-hidden="true"><use href="#mc-icon"/></svg>
+        <span class="brand__text">
+          <span class="brand__name">Martínez</span>
+          <span class="brand__tag">Constructora</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+        <ul class="main-nav__list">
+          <li><a href="#nosotros" class="main-nav__link">Nosotros</a></li>
+          <li><a href="#servicios" class="main-nav__link">Servicios</a></li>
+          <li><a href="#proyectos" class="main-nav__link">Proyectos</a></li>
+          <li><a href="#proceso" class="main-nav__link">Proceso</a></li>
+          <li><a href="#contacto" class="main-nav__link">Contacto</a></li>
+        </ul>
+        <a href="#contacto" class="btn btn--gold btn--sm main-nav__cta">Cotizar proyecto</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="inicio">
+      <div class="hero__media" aria-hidden="true">
+        <img class="hero__img" src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80" alt="">
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+
+      <!-- Las líneas del logo, dibujadas en grande -->
+      <svg class="hero__lines" viewBox="0 0 600 600" aria-hidden="true">
+        <polygon class="hero__line" pathLength="1" points="35,458 292,92 412,260 282,458 232,458 370,258 292,150 83,458"/>
+        <polygon class="hero__line" pathLength="1" points="135,458 298,224 328,254 316,266 185,458"/>
+        <polygon class="hero__line" pathLength="1" points="305,458 430,282 452,305 368,425 495,425 466,378 490,354 565,458"/>
+      </svg>
+
+      <div class="hero__content container">
+        <p class="hero__intro" data-hero>Ing. Iván Martínez U. y equipo</p>
+        <h1 class="hero__title">
+          <span class="line"><span data-hero>Construimos espacios</span></span>
+          <span class="line"><span data-hero>pensados para durar.</span></span>
+        </h1>
+        <p class="hero__lead" data-hero>Diseño, construcción y acabados para viviendas y proyectos comerciales, con dirección técnica en cada etapa de la obra.</p>
+        <div class="hero__actions" data-hero>
+          <a href="#proyectos" class="btn btn--gold">Ver proyectos</a>
+          <a href="https://wa.me/593995403075?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20un%20proyecto." class="btn btn--ghost" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </div>
+
+      <a href="#nosotros" class="hero__scroll" aria-label="Bajar a la siguiente sección">
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- ===== Nosotros ===== -->
+    <section class="about section section--light" id="nosotros">
+      <div class="container about__grid">
+        <div class="about__media reveal">
+          <figure class="about__figure about__figure--main">
+            <img src="assets/img/residencia-render.jpg" alt="Render de una residencia moderna con fachada de piedra y grandes ventanales" loading="lazy">
+          </figure>
+          <figure class="about__figure about__figure--small">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="Planos arquitectónicos sobre la mesa de trabajo" loading="lazy">
+          </figure>
+          <span class="about__frame" aria-hidden="true"></span>
+        </div>
+
+        <div class="about__text">
+          <h2 class="section-title reveal">Una constructora familiar con criterio de ingeniería</h2>
+          <p class="reveal">Somos una empresa dirigida por el Ing. Iván Martínez U. Acompañamos a cada cliente desde la primera idea hasta la entrega de llaves, con presupuestos claros, materiales de calidad y un equipo que conoce la obra de cerca.</p>
+          <p class="reveal">Nuestro apellido está en cada proyecto. Por eso cuidamos los detalles que no siempre se ven: la estructura, las instalaciones y los tiempos de entrega.</p>
+
+          <dl class="stats reveal">
+            <div class="stats__item">
+              <dt class="stats__label">Años de experiencia</dt>
+              <dd class="stats__value"><span data-count="10">0</span>+</dd>
+            </div>
+            <div class="stats__item">
+              <dt class="stats__label">Obras entregadas</dt>
+              <dd class="stats__value"><span data-count="60">0</span>+</dd>
+            </div>
+            <div class="stats__item">
+              <dt class="stats__label">m² construidos</dt>
+              <dd class="stats__value"><span data-count="25000" data-format="thousands">0</span></dd>
+            </div>
+          </dl>
+
+          <div class="signature reveal">
+            <svg class="signature__icon" aria-hidden="true"><use href="#mc-icon"/></svg>
+            <div>
+              <strong>Ing. Iván Martínez U.</strong>
+              <span>Gerente general</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Frase ===== -->
+    <section class="statement" aria-label="Nuestro compromiso">
+      <div class="container statement__inner">
+        <svg class="statement__icon" aria-hidden="true"><use href="#mc-icon"/></svg>
+        <blockquote class="statement__quote reveal">
+          <p>Cada obra lleva nuestro apellido. Por eso la construimos como si fuera nuestra casa.</p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ===== Servicios ===== -->
+    <section class="services section section--dark" id="servicios">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title reveal">Lo que hacemos</h2>
+          <p class="section-lead reveal">Un solo equipo para diseñar, construir y terminar tu proyecto, sin intermediarios.</p>
+        </header>
+
+        <div class="services__layout">
+          <ul class="services__list" role="list">
+            <li class="service is-active" data-img="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="true">
+                <span class="service__name">Construcción de viviendas</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Casas unifamiliares y residencias de autor, desde la cimentación hasta los acabados finales.</p>
+              </div>
+            </li>
+            <li class="service" data-img="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="false">
+                <span class="service__name">Diseño arquitectónico</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Planos, renders y aprobación municipal. Ves tu casa en 3D antes de poner el primer ladrillo.</p>
+              </div>
+            </li>
+            <li class="service" data-img="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="false">
+                <span class="service__name">Proyectos comerciales</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Locales, oficinas y edificios de uso mixto, planificados para optimizar cada metro cuadrado.</p>
+              </div>
+            </li>
+            <li class="service" data-img="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="false">
+                <span class="service__name">Remodelaciones y ampliaciones</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Renovamos espacios existentes y sumamos áreas nuevas sin comprometer la estructura.</p>
+              </div>
+            </li>
+            <li class="service" data-img="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="false">
+                <span class="service__name">Dirección técnica y fiscalización</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Control de calidad, cronograma y presupuesto, con informes periódicos del avance de obra.</p>
+              </div>
+            </li>
+            <li class="service" data-img="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80">
+              <button class="service__btn" type="button" aria-expanded="false">
+                <span class="service__name">Acabados de alta gama</span>
+                <span class="service__plus" aria-hidden="true"></span>
+              </button>
+              <div class="service__body">
+                <p>Porcelanatos, carpintería, iluminación y griferías seleccionadas junto a ti.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="services__visual" aria-hidden="true">
+            <img class="services__img is-visible" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80" alt="">
+            <img class="services__img" alt="">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Proyectos ===== -->
+    <section class="projects section section--light" id="proyectos">
+      <div class="container">
+        <header class="section-head section-head--split">
+          <div>
+            <h2 class="section-title reveal">Proyectos</h2>
+            <p class="section-lead reveal">Obras entregadas y en construcción. Toca cualquiera para ver sus detalles.</p>
+          </div>
+          <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
+            <button class="filter is-active" type="button" data-filter="todos" aria-pressed="true">Todos</button>
+            <button class="filter" type="button" data-filter="residencial" aria-pressed="false">Residencial</button>
+            <button class="filter" type="button" data-filter="comercial" aria-pressed="false">Comercial</button>
+            <button class="filter" type="button" data-filter="remodelacion" aria-pressed="false">Remodelación</button>
+          </div>
+        </header>
+
+        <!-- Las tarjetas se generan desde js/main.js (arreglo PROYECTOS) -->
+        <div class="projects__grid" id="projects-grid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ===== Proceso ===== -->
+    <section class="process section section--dark" id="proceso">
+      <div class="container">
+        <header class="section-head">
+          <h2 class="section-title reveal">Cómo trabajamos</h2>
+          <p class="section-lead reveal">Cuatro etapas claras, para que siempre sepas en qué punto está tu obra.</p>
+        </header>
+
+        <div class="process__wrap" id="process-steps">
+          <span class="process__track" aria-hidden="true"><span class="process__fill"></span></span>
+          <ol class="process__steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Conversamos</h3>
+            <p>Visitamos el terreno, escuchamos lo que necesitas y definimos un alcance realista.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Diseñamos y presupuestamos</h3>
+            <p>Planos, renders y un presupuesto detallado por rubros, sin costos ocultos.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Construimos</h3>
+            <p>Ejecutamos con cronograma y te enviamos fotos y reportes del avance.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">04</span>
+            <h3 class="step__title">Entregamos</h3>
+            <p>Revisión final contigo, entrega de llaves y garantía sobre la obra.</p>
+          </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonios ===== -->
+    <section class="testimonials section section--light" aria-labelledby="testimonios-title">
+      <div class="container testimonials__inner">
+        <h2 class="section-title reveal" id="testimonios-title">Lo que dicen nuestros clientes</h2>
+
+        <div class="slider reveal" id="slider" aria-roledescription="carrusel">
+          <div class="slider__track">
+            <figure class="slide is-active" aria-roledescription="testimonio">
+              <blockquote>Cumplieron con los tiempos y el presupuesto que nos dieron desde el inicio. La casa quedó mejor de lo que imaginábamos.</blockquote>
+              <figcaption><strong>Familia Rodríguez</strong><span>Vivienda unifamiliar</span></figcaption>
+            </figure>
+            <figure class="slide" aria-roledescription="testimonio">
+              <blockquote>El ingeniero estuvo pendiente de cada detalle. Siempre sabíamos cómo avanzaba la obra, aunque vivíamos fuera del país.</blockquote>
+              <figcaption><strong>Andrea y Marco</strong><span>Residencia con acabados de lujo</span></figcaption>
+            </figure>
+            <figure class="slide" aria-roledescription="testimonio">
+              <blockquote>Remodelaron nuestro local en semanas y pudimos reabrir a tiempo. Trabajo limpio y muy ordenado.</blockquote>
+              <figcaption><strong>Carlos P.</strong><span>Remodelación comercial</span></figcaption>
+            </figure>
+          </div>
+          <div class="slider__controls">
+            <button class="slider__arrow" type="button" data-dir="-1" aria-label="Testimonio anterior">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="slider__dots" role="tablist"></div>
+            <button class="slider__arrow" type="button" data-dir="1" aria-label="Siguiente testimonio">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contacto ===== -->
+    <section class="contact section section--dark" id="contacto">
+      <div class="container contact__grid">
+        <div class="contact__info">
+          <h2 class="section-title reveal">Hablemos de tu proyecto</h2>
+          <p class="section-lead reveal">Cuéntanos qué tienes en mente. Te respondemos el mismo día para agendar una visita.</p>
+
+          <ul class="contact__list reveal" role="list">
+            <li>
+              <span class="contact__key">WhatsApp y llamadas</span>
+              <a href="tel:+593995403075" class="contact__value">099 540 3075</a>
+            </li>
+            <li>
+              <span class="contact__key">Correo</span>
+              <a href="mailto:info@martinezconstructora.com" class="contact__value">info@martinezconstructora.com</a>
+            </li>
+            <li>
+              <span class="contact__key">Atención</span>
+              <span class="contact__value">Lunes a sábado, previa cita</span>
+            </li>
+          </ul>
+
+          <div class="socials reveal">
+            <a href="#" class="socials__link" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg>
+            </a>
+            <a href="#" class="socials__link" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+            </a>
+            <a href="#" class="socials__link" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 3c.4 2.3 1.9 3.8 4 4v3.3c-1.5 0-2.9-.4-4-1.2v6.4A5.6 5.6 0 1 1 10.9 10v3.4a2.3 2.3 0 1 0 2.2 2.3V3h3.4z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <div class="field">
+            <label for="f-nombre">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required>
+            <span class="field__error" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="f-telefono">Teléfono</label>
+            <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required>
+            <span class="field__error" aria-live="polite"></span>
+          </div>
+          <div class="field">
+            <label for="f-tipo">Tipo de proyecto</label>
+            <select id="f-tipo" name="tipo">
+              <option>Construcción de vivienda</option>
+              <option>Diseño arquitectónico</option>
+              <option>Proyecto comercial</option>
+              <option>Remodelación o ampliación</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label for="f-mensaje">Mensaje</label>
+            <textarea id="f-mensaje" name="mensaje" rows="4" placeholder="Ubicación del terreno, metros aproximados, plazos…"></textarea>
+          </div>
+          <button type="submit" class="btn btn--gold contact-form__submit">Enviar por WhatsApp</button>
+          <p class="contact-form__note">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <a href="#inicio" class="brand brand--footer" aria-label="Martínez Constructora, ir al inicio">
+        <svg class="brand__icon" aria-hidden="true"><use href="#mc-icon"/></svg>
+        <span class="brand__text">
+          <span class="brand__name">Martínez</span>
+          <span class="brand__tag">Constructora</span>
+        </span>
+      </a>
+      <nav class="site-footer__nav" aria-label="Enlaces del pie de página">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+      <p class="site-footer__copy">© <span id="year"></span> Martínez Constructora. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Botón flotante de WhatsApp ===== -->
+  <a class="wa-float" href="https://wa.me/593995403075?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20un%20proyecto." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+  </a>
+
+  <!-- ===== Modal de proyecto ===== -->
+  <div class="modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="document">
+      <button class="modal__close" type="button" data-close aria-label="Cerrar detalles del proyecto">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <figure class="modal__media"><img id="modal-img" src="" alt=""></figure>
+      <div class="modal__body">
+        <p class="modal__status" id="modal-status"></p>
+        <h3 class="modal__title" id="modal-title"></h3>
+        <p class="modal__desc" id="modal-desc"></p>
+        <dl class="modal__specs" id="modal-specs"></dl>
+        <div class="modal__nav">
+          <button type="button" class="modal__step" data-step="-1">Anterior</button>
+          <a class="btn btn--gold btn--sm" id="modal-cta" href="#contacto">Quiero algo similar</a>
+          <button type="button" class="modal__step" data-step="1">Siguiente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
