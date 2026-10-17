@@ -19,8 +19,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/Styles.css">
-  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    document.documentElement.classList.add('js');
+    /* Seguro anti-bloqueo: si por cualquier motivo js/main.js no arranca,
+       la pantalla de carga se quita sola y todo el contenido queda visible. */
+    setTimeout(function () {
+      if (window.__mcInit) return;
+      document.documentElement.classList.remove('js');
+      document.body.classList.remove('is-loading');
+      document.body.classList.add('is-ready');
+    }, 4500);
+  </script>
 </head>
 <body class="is-loading">
 
@@ -61,9 +71,10 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
         <ul class="main-nav__list">
+          <li><a href="#inicio" class="main-nav__link">Inicio</a></li>
           <li><a href="#nosotros" class="main-nav__link">Nosotros</a></li>
           <li><a href="#servicios" class="main-nav__link">Servicios</a></li>
-          <li><a href="#proyectos" class="main-nav__link">Proyectos</a></li>
+          <li><a href="proyectos.html" class="main-nav__link">Proyectos</a></li>
           <li><a href="#proceso" class="main-nav__link">Proceso</a></li>
           <li><a href="#contacto" class="main-nav__link">Contacto</a></li>
         </ul>
@@ -131,15 +142,15 @@
           <dl class="stats reveal">
             <div class="stats__item">
               <dt class="stats__label">Años de experiencia</dt>
-              <dd class="stats__value"><span data-count="2">0</span>+</dd>
-            </div>
-            <div class="stats__item">
-              <dt class="stats__label">Obras entregadas</dt>
               <dd class="stats__value"><span data-count="10">0</span>+</dd>
             </div>
             <div class="stats__item">
+              <dt class="stats__label">Obras entregadas</dt>
+              <dd class="stats__value"><span data-count="60">0</span>+</dd>
+            </div>
+            <div class="stats__item">
               <dt class="stats__label">m² construidos</dt>
-              <dd class="stats__value"><span data-count="5000" data-format="thousands">0</span></dd>
+              <dd class="stats__value"><span data-count="25000" data-format="thousands">0</span></dd>
             </div>
           </dl>
 
@@ -238,24 +249,22 @@
       </div>
     </section>
 
-    <!-- ===== Proyectos ===== -->
+    <!-- ===== Proyectos destacados (el catálogo completo está en proyectos.html) ===== -->
     <section class="projects section section--light" id="proyectos">
       <div class="container">
         <header class="section-head section-head--split">
           <div>
-            <h2 class="section-title reveal">Proyectos</h2>
-            <p class="section-lead reveal">Obras entregadas y en construcción. Toca cualquiera para ver sus detalles.</p>
-          </div>
-          <div class="filters reveal" role="group" aria-label="Filtrar proyectos">
-            <button class="filter is-active" type="button" data-filter="todos" aria-pressed="true">Todos</button>
-            <button class="filter" type="button" data-filter="residencial" aria-pressed="false">Residencial</button>
-            <button class="filter" type="button" data-filter="comercial" aria-pressed="false">Comercial</button>
-            <button class="filter" type="button" data-filter="remodelacion" aria-pressed="false">Remodelación</button>
+            <h2 class="section-title reveal">Proyectos destacados</h2>
+            <p class="section-lead reveal">Una selección de nuestras obras. Toca cualquiera para ver sus detalles.</p>
           </div>
         </header>
 
-        <!-- Las tarjetas se generan desde js/main.js (arreglo PROYECTOS) -->
-        <div class="projects__grid" id="projects-grid" aria-live="polite"></div>
+        <!-- Las tarjetas se generan desde js/main.js con los datos de js/data.js -->
+        <div class="projects__grid" id="projects-grid" data-featured aria-live="polite"></div>
+
+        <div class="projects__more reveal">
+          <a href="proyectos.html" class="btn btn--gold">Ver todos los proyectos</a>
+        </div>
       </div>
     </section>
 
@@ -406,9 +415,10 @@
         </span>
       </a>
       <nav class="site-footer__nav" aria-label="Enlaces del pie de página">
+        <a href="#inicio">Inicio</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Servicios</a>
-        <a href="#proyectos">Proyectos</a>
+        <a href="proyectos.html">Proyectos</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <p class="site-footer__copy">© <span id="year"></span> Martínez Constructora. Todos los derechos reservados.</p>
@@ -442,6 +452,7 @@
     </div>
   </div>
 
-  <script src="js/Main.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

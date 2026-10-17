@@ -2,98 +2,7 @@
    MARTÍNEZ CONSTRUCTORA — Interacciones
    ========================================================= */
 
-/* ---------------------------------------------------------
-   PROYECTOS
-   Para agregar un proyecto, copia un bloque { ... } y cambia
-   sus datos. "categoria" debe ser: residencial, comercial
-   o remodelacion. "estado": "Entregado" o "En construcción".
-   Las fotos reales van en assets/img/ (ej: "assets/img/casa-1.jpg").
-   --------------------------------------------------------- */
-const PROYECTOS = [
-  {
-    titulo: "Residencia Los Pinos",
-    categoria: "residencial",
-    estado: "En construcción",
-    ubicacion: "Zona residencial norte",
-    area: "420 m²",
-    anio: "2026",
-    imagen: "assets/img/residencia-render.jpg",
-    descripcion: "Vivienda de dos plantas con fachada en piedra natural, voladizo de hormigón y aleros de madera. Grandes ventanales hacia el jardín y terraza con piscina."
-  },
-  {
-    titulo: "Casa Mirador",
-    categoria: "residencial",
-    estado: "Entregado",
-    ubicacion: "Vía a la montaña",
-    area: "310 m²",
-    anio: "2025",
-    imagen: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Casa de líneas rectas con doble altura en la sala, cubierta plana y amplias áreas sociales integradas al exterior."
-  },
-  {
-    titulo: "Villa Alameda",
-    categoria: "residencial",
-    estado: "Entregado",
-    ubicacion: "Urbanización privada",
-    area: "520 m²",
-    anio: "2024",
-    imagen: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Residencia de lujo con piscina, cuatro dormitorios en suite y acabados importados en pisos y carpintería."
-  },
-  {
-    titulo: "Edificio Centro Empresarial",
-    categoria: "comercial",
-    estado: "En construcción",
-    ubicacion: "Av. principal, zona comercial",
-    area: "1.800 m²",
-    anio: "2026",
-    imagen: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Edificio de oficinas y locales comerciales en planta baja, con fachada de vidrio y estacionamientos subterráneos."
-  },
-  {
-    titulo: "Casa Jardín",
-    categoria: "residencial",
-    estado: "Entregado",
-    ubicacion: "Sector valle",
-    area: "260 m²",
-    anio: "2023",
-    imagen: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Vivienda familiar de una planta, pensada para la vida al aire libre, con patio central y cubierta verde."
-  },
-  {
-    titulo: "Remodelación Departamento Norte",
-    categoria: "remodelacion",
-    estado: "Entregado",
-    ubicacion: "Edificio residencial",
-    area: "140 m²",
-    anio: "2025",
-    imagen: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Redistribución completa de áreas sociales, cocina abierta, iluminación nueva y pisos de porcelanato de gran formato."
-  },
-  {
-    titulo: "Locales Plaza Sur",
-    categoria: "comercial",
-    estado: "Entregado",
-    ubicacion: "Zona sur",
-    area: "650 m²",
-    anio: "2024",
-    imagen: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Conjunto de seis locales comerciales con estructura metálica y fachada ventilada."
-  },
-  {
-    titulo: "Cocina y áreas sociales Casa R.",
-    categoria: "remodelacion",
-    estado: "Entregado",
-    ubicacion: "Urbanización privada",
-    area: "85 m²",
-    anio: "2023",
-    imagen: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=80",
-    descripcion: "Remodelación de cocina con isla central, mesones de cuarzo y muebles a medida."
-  }
-];
 
-/* Número de WhatsApp (formato internacional, sin + ni espacios) */
-const WHATSAPP = "593995403075";
 
 /* --------------------------------------------------------- */
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
@@ -112,7 +21,7 @@ function initIntro() {
   $$("[data-hero]").forEach((el, i) => el.style.setProperty("--d", `${0.55 + i * 0.12}s`));
 
   const start = performance.now();
-  const MIN = reduceMotion ? 0 : 1500;   // deja que el logo se dibuje
+  const MIN = reduceMotion || !$(".preloader") ? 0 : 1500;   // deja que el logo se dibuje
   let done = false;
 
   const ready = () => {
@@ -177,7 +86,10 @@ function initMenu() {
 /* ---------- Enlace activo según la sección visible ---------- */
 function initActiveLink() {
   const links = $$(".main-nav__link");
-  const map = new Map(links.map((a) => [a.getAttribute("href").slice(1), a]));
+  const map = new Map(
+    links.filter((a) => a.getAttribute("href").startsWith("#")).map((a) => [a.getAttribute("href").slice(1), a])
+  );
+  if (!map.size) return;
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -253,6 +165,7 @@ function initParallax() {
   const media = $(".hero__media");
   const lines = $(".hero__lines");
   const hero = $(".hero");
+  if (!media || !lines || !hero) return;
   let ticking = false;
 
   const update = () => {
@@ -273,6 +186,7 @@ function initParallax() {
 function initServices() {
   const items = $$(".service");
   const imgs = $$(".services__img");
+  if (!items.length) return;
   let front = 0;
 
   const showImage = (src) => {
@@ -312,33 +226,60 @@ function initServices() {
   }
 }
 
-/* ---------- Proyectos: render, filtros y modal ---------- */
+/* ---------- Distribución de tarjetas (sin huecos para cualquier cantidad) ---------- */
+function layoutFor(n) {
+  const out = [];
+  let rem = n, row = 0, features = 0;
+  while (rem > 0) {
+    if (rem === 1) { out.push("card--full"); break; }
+    const feature = rem === 2 || rem === 4 || (row % 2 === 0 && rem !== 3);
+    if (feature) {
+      out.push(...(features % 2 === 0 ? ["card--wide", ""] : ["", "card--wide"]));
+      features++; rem -= 2;
+    } else {
+      out.push("", "", ""); rem -= 3;
+    }
+    row++;
+  }
+  return out;
+}
+
+/* ---------- Proyectos: render, filtros y modal ----------
+   Funciona en dos lugares:
+   - Inicio: muestra solo los proyectos "destacado: true"
+   - proyectos.html: muestra todos, con filtros                  */
 function initProjects() {
   const grid = $("#projects-grid");
+  if (!grid || typeof PROYECTOS === "undefined") return;
+
+  const featuredOnly = grid.hasAttribute("data-featured");
   const filters = $$(".filter");
-  const pattern = ["card--wide", "", "card--tall", "", "", "card--wide"];
-  let visible = PROYECTOS.map((p, i) => i);
+  const counter = $("#projects-count");
+  let visible = [];
 
   const render = (filter) => {
     visible = PROYECTOS
       .map((p, i) => ({ p, i }))
-      .filter(({ p }) => filter === "todos" || p.categoria === filter)
+      .filter(({ p }) => (featuredOnly ? p.destacado : filter === "todos" || p.categoria === filter))
+      .slice(0, featuredOnly ? 4 : undefined)
       .map(({ i }) => i);
+
+    if (counter) {
+      const n = visible.length;
+      counter.textContent = n === 1 ? "Mostrando 1 proyecto" : `Mostrando ${n} proyectos`;
+    }
 
     if (!visible.length) {
       grid.innerHTML = `<p class="projects__empty">Aún no hay proyectos en esta categoría.</p>`;
       return;
     }
 
+    const sizes = layoutFor(visible.length);
     grid.innerHTML = visible.map((idx, n) => {
       const p = PROYECTOS[idx];
-      const size =
-        visible.length === 1 ? "card--full" :
-        visible.length === 2 ? (n === 0 ? "card--wide" : "") :
-        pattern[n % pattern.length];
       const obra = p.estado.toLowerCase().includes("constru") ? " card__status--obra" : "";
       return `
-        <button class="card ${size}" type="button" data-index="${idx}" style="--d:${n * 0.07}s"
+        <button class="card ${sizes[n]}" type="button" data-index="${idx}" style="--d:${n * 0.07}s"
           aria-label="Ver detalles de ${p.titulo}">
           <img class="card__img" src="${p.imagen}" alt="" loading="lazy">
           <span class="card__info">
@@ -353,14 +294,20 @@ function initProjects() {
     $$(".card__img", grid).forEach(protectImage);
   };
 
+  const setActive = (btn) => filters.forEach((b) => {
+    const on = b === btn;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
+
   filters.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (btn.classList.contains("is-active")) return;
-      filters.forEach((b) => {
-        const on = b === btn;
-        b.classList.toggle("is-active", on);
-        b.setAttribute("aria-pressed", String(on));
-      });
+      setActive(btn);
+      const url = new URL(location.href);
+      if (btn.dataset.filter === "todos") url.searchParams.delete("cat");
+      else url.searchParams.set("cat", btn.dataset.filter);
+      history.replaceState(null, "", url);
       grid.classList.add("is-switching");
       setTimeout(() => {
         render(btn.dataset.filter);
@@ -445,12 +392,17 @@ function initProjects() {
     }
   });
 
-  render("todos");
+  // /proyectos.html?cat=comercial abre directamente esa categoría
+  const wanted = new URLSearchParams(location.search).get("cat");
+  const initial = filters.find((b) => b.dataset.filter === wanted);
+  if (initial) setActive(initial);
+  render(initial ? initial.dataset.filter : "todos");
 }
 
 /* ---------- Línea del proceso que avanza con el scroll ---------- */
 function initProcess() {
   const wrap = $("#process-steps");
+  if (!wrap) return;
   const fill = $(".process__fill", wrap);
   const steps = $$(".step", wrap);
   let ticking = false;
@@ -477,6 +429,7 @@ function initProcess() {
 /* ---------- Testimonios ---------- */
 function initSlider() {
   const slider = $("#slider");
+  if (!slider) return;
   const slides = $$(".slide", slider);
   const dotsWrap = $(".slider__dots", slider);
   const TIME = 7000;
@@ -542,6 +495,7 @@ function initSlider() {
 /* ---------- Formulario → WhatsApp ---------- */
 function initForm() {
   const form = $("#contact-form");
+  if (!form) return;
 
   const setError = (input, msg) => {
     const field = input.closest(".field");
@@ -586,18 +540,12 @@ function initForm() {
 
 /* ---------- Inicio ---------- */
 document.addEventListener("DOMContentLoaded", () => {
+  window.__mcInit = true;
   initIntro();
-  initHeader();
-  initMenu();
-  initActiveLink();
-  initReveal();
-  initCounters();
-  initParallax();
-  initServices();
-  initProjects();
-  initProcess();
-  initSlider();
-  initForm();
+  [initHeader, initMenu, initActiveLink, initReveal, initCounters, initParallax,
+   initServices, initProjects, initProcess, initSlider, initForm].forEach((fn) => {
+    try { fn(); } catch (err) { console.error(fn.name, err); }
+  });
 
   $$(".hero__img, .about__figure img").forEach(protectImage);
   const y = $("#year");
