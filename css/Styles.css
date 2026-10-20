@@ -1265,15 +1265,22 @@ body.is-ready .wa-float { transform: scale(1); }
 .modal.is-open .modal__backdrop { opacity: 1; }
 .modal.is-open .modal__panel { opacity: 1; transform: none; }
 
-.modal__media { position: relative; background: var(--ink-3); min-height: 320px; }
-.modal__media img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity .4s;
-}
+.modal__media { position: relative; display: flex; flex-direction: column; min-height: 320px; background: var(--ink-deep); }
+.gallery__stage { position: relative; flex: 1; min-height: 300px; overflow: hidden; }
+/* Fondo desenfocado con la misma foto: así cualquier formato se ve completo y bien enmarcado */
+.gallery__stage::before { content: ""; position: absolute; inset: -24px; background: var(--bg) center / cover; filter: blur(26px) brightness(.5); }
+.gallery__stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+.gallery__nav { position: absolute; top: 42%; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; background: rgba(9, 18, 33, .65); border: 1px solid var(--line-light); border-radius: 50%; transition: border-color .3s; }
+.gallery__nav[hidden] { display: none; }
+.gallery__nav svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 1.6; }
+.gallery__nav:hover { border-color: var(--gold); }
+.gallery__nav--prev { left: .8rem; }
+.gallery__nav--next { right: .8rem; }
+.gallery__thumbs { display: flex; gap: .45rem; padding: .55rem; overflow-x: auto; background: var(--ink-deep); }
+.gallery__thumbs[hidden] { display: none; }
+.gallery__thumbs button { flex: none; width: 66px; height: 48px; padding: 0; border: 1px solid transparent; border-radius: 2px; overflow: hidden; opacity: .5; transition: opacity .3s, border-color .3s; }
+.gallery__thumbs button.is-on, .gallery__thumbs button:hover { opacity: 1; border-color: var(--gold); }
+.gallery__thumbs img { width: 100%; height: 100%; object-fit: cover; }
 
 .modal__body {
   padding: clamp(1.75rem, 3.5vw, 3rem);
@@ -1382,7 +1389,8 @@ body.is-ready .wa-float { transform: scale(1); }
   .step__num { grid-row: span 2; margin-bottom: 0; }
 
   .modal__panel { grid-template-columns: 1fr; overflow-y: auto; }
-  .modal__media { min-height: 0; aspect-ratio: 16 / 10; }
+  .modal__media { min-height: 0; }
+  .gallery__stage { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
   .modal__body { overflow: visible; }
 }
 
@@ -1436,5 +1444,3 @@ body.is-ready .wa-float { transform: scale(1); }
   }
   .hero__line { stroke-dashoffset: 0; opacity: .45; }
 }
-
-/*holi*/

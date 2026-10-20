@@ -7,6 +7,7 @@
 /* --------------------------------------------------------- */
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 /* ---------- Imagen que no carga → fondo con la marca ---------- */
@@ -228,6 +229,8 @@ function initServices() {
 
 /* ---------- Distribución de tarjetas (sin huecos para cualquier cantidad) ---------- */
 function layoutFor(n) {
+  // Con 1 a 3 proyectos, tarjetas del mismo tamaño (nunca estiradas a todo el ancho)
+  if (n <= 3) return Array(n).fill("");
   const out = [];
   let rem = n, row = 0, features = 0;
   while (rem > 0) {
@@ -248,9 +251,10 @@ function layoutFor(n) {
    Funciona en dos lugares:
    - Inicio: muestra solo los proyectos "destacado: true"
    - proyectos.html: muestra todos, con filtros                  */
-function initProjects() {
+async function initProjects() {
   const grid = $("#projects-grid");
   if (!grid || typeof PROYECTOS === "undefined") return;
+  if (typeof cargarProyectos === "function") await cargarProyectos();
 
   const featuredOnly = grid.hasAttribute("data-featured");
   const filters = $$(".filter");
@@ -270,7 +274,7 @@ function initProjects() {
     }
 
     if (!visible.length) {
-      grid.innerHTML = `<p class="projects__empty">Aún no hay proyectos en esta categoría.</p>`;
+      grid.innerHTML = `<p class="projects__empty">${PROYECTOS.length ? "Aún no hay proyectos en esta categoría." : "Pronto publicaremos nuestros proyectos."}</p>`;
       return;
     }
 
@@ -280,12 +284,12 @@ function initProjects() {
       const obra = p.estado.toLowerCase().includes("constru") ? " card__status--obra" : "";
       return `
         <button class="card ${sizes[n]}" type="button" data-index="${idx}" style="--d:${n * 0.07}s"
-          aria-label="Ver detalles de ${p.titulo}">
-          <img class="card__img" src="${p.imagen}" alt="" loading="lazy">
+          aria-label="Ver detalles de ${esc(p.titulo)}">
+          <img class="card__img" src="${esc(p.imagen)}" alt="" loading="lazy">
           <span class="card__info">
-            <span class="card__status${obra}">${p.estado}</span>
-            <span class="card__title">${p.titulo}</span>
-            <span class="card__place">${p.ubicacion}</span>
+            <span class="card__status${obra}">${esc(p.estado)}</span>
+            <span class="card__title">${esc(p.titulo)}</span>
+            <span class="card__place">${esc(p.ubicacion)}</span>
             <span class="card__more">Ver detalles</span>
           </span>
         </button>`;
@@ -323,12 +327,39 @@ function initProjects() {
   let current = 0;
   let lastFocus = null;
 
+  const stage = img.parentElement;
+  const thumbsBox = $("#gallery-thumbs");
+  const navBtns = $$(".gallery__nav", modal);
+  let fotos = [], fi = 0;
+  const galeriaDe = (p) => Array.isArray(p.galeria) && p.galeria.length
+    ? p.galeria.map((g) => (typeof g === "string" ? { full: g, thumb: g } : g))
+    : [{ full: p.imagen, thumb: p.imagen }];
+  const showFoto = (i) => {
+    fi = (i + fotos.length) % fotos.length;
+    stage.classList.remove("img-fallback");
+    img.src = fotos[fi].full;
+    stage.style.setProperty("--bg", `url("${String(fotos[fi].full).replace(/"/g, "%22")}")`);
+    $$("button", thumbsBox).forEach((b, n) => b.classList.toggle("is-on", n === fi));
+  };
+  const buildThumbs = () => {
+    const many = fotos.length > 1;
+    thumbsBox.hidden = !many;
+    navBtns.forEach((b) => (b.hidden = !many));
+    thumbsBox.innerHTML = many ? fotos.map((f, n) => `<button type="button" aria-label="Ver foto ${n + 1}"><img src="${esc(f.thumb)}" alt="" loading="lazy"></button>`).join("") : "";
+  };
+  thumbsBox.addEventListener("click", (e) => {
+    const b = e.target.closest("button");
+    if (b) showFoto([...thumbsBox.children].indexOf(b));
+  });
+  navBtns.forEach((b) => b.addEventListener("click", () => showFoto(fi + Number(b.dataset.gal))));
+
   const fill = (idx) => {
     const p = PROYECTOS[idx];
     current = idx;
-    img.parentElement.classList.remove("img-fallback");
-    img.src = p.imagen;
+    fotos = galeriaDe(p);
     img.alt = p.titulo;
+    buildThumbs();
+    showFoto(0);
     $("#modal-status").textContent = p.estado;
     $("#modal-title").textContent = p.titulo;
     $("#modal-desc").textContent = p.descripcion;
@@ -337,7 +368,7 @@ function initProjects() {
       ["Área", p.area],
       ["Año", p.anio],
       ["Tipo", { residencial: "Residencial", comercial: "Comercial", remodelacion: "Remodelación" }[p.categoria]]
-    ].map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join("");
+    ].map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("");
     $("#modal-cta").href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
       `Hola, vi el proyecto "${p.titulo}" en su página y quisiera algo similar.`
     )}`;
@@ -380,8 +411,8 @@ function initProjects() {
   document.addEventListener("keydown", (e) => {
     if (modal.hidden) return;
     if (e.key === "Escape") close();
-    if (e.key === "ArrowRight") step(1);
-    if (e.key === "ArrowLeft") step(-1);
+    if (e.key === "ArrowRight") fotos.length > 1 ? showFoto(fi + 1) : step(1);
+    if (e.key === "ArrowLeft") fotos.length > 1 ? showFoto(fi - 1) : step(-1);
     if (e.key === "Tab") {
       // mantiene el foco dentro del modal
       const focusables = $$("button, a[href]", panel).filter((el) => el.offsetParent !== null);

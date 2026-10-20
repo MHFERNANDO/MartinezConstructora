@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel de proyectos | Martínez Constructora</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <header class="admin-bar">
+    <a class="brand" href="index.html"><svg class="brand__icon" viewBox="0 0 600 600" aria-hidden="true"><g fill="currentColor"><rect x="12" y="12" width="576" height="576" rx="44" fill="none" stroke="currentColor" stroke-width="20"/><polygon points="35,458 292,92 412,260 282,458 232,458 370,258 292,150 83,458"/><polygon points="135,458 298,224 328,254 316,266 185,458"/><polygon points="305,458 430,282 452,305 368,425 495,425 466,378 490,354 565,458"/></g></svg>
+      <span class="brand__text"><span class="brand__name">Martínez</span><span class="brand__tag">Panel</span></span></a>
+    <div class="who" id="who" hidden><span id="who-mail"></span> · <button type="button" id="logout" class="btn btn--ghost btn--sm">Salir</button></div>
+  </header>
+
+  <main class="admin">
+    <section class="panel login" id="login">
+      <h2>Ingresar</h2>
+      <form id="login-form" class="form-grid">
+        <div class="field full"><label for="email">Correo</label><input id="email" type="email" autocomplete="username" required></div>
+        <div class="field full"><label for="pass">Contraseña</label><input id="pass" type="password" autocomplete="current-password" required></div>
+        <div class="full"><button class="btn btn--gold" type="submit">Entrar</button></div>
+      </form>
+      <p class="msg" id="login-msg" role="alert"></p>
+    </section>
+
+    <div id="app" hidden>
+      <section class="panel">
+        <h2 id="form-title">Nuevo proyecto</h2>
+        <p class="hint">Completa los datos y sube una foto principal. Al guardar, aparece solo en la página web.</p>
+        <form id="project-form" class="form-grid">
+          <div class="field full"><label for="titulo">Nombre del proyecto *</label><input id="titulo" maxlength="80" required></div>
+          <div class="field"><label for="categoria">Categoría *</label>
+            <select id="categoria"><option value="residencial">Residencial</option><option value="comercial">Comercial</option><option value="remodelacion">Remodelación</option></select></div>
+          <div class="field"><label for="estado">Estado *</label>
+            <select id="estado"><option>Entregado</option><option>En construcción</option></select></div>
+          <div class="field"><label for="ubicacion">Ubicación *</label><input id="ubicacion" maxlength="80" required></div>
+          <div class="field"><label for="area">Área (ej: 320 m²)</label><input id="area" maxlength="30"></div>
+          <div class="field"><label for="anio">Año</label><input id="anio" inputmode="numeric" maxlength="4"></div>
+          <div class="field full"><label for="foto">Fotos * (hasta 10; la primera es la portada)</label><input id="foto" type="file" accept="image/*" multiple><p class="hint">Se reducen y optimizan solas. Puedes agregar más después, al editar.</p><div class="thumbs" id="thumbs"></div></div>
+          <div class="field full"><label for="descripcion">Descripción *</label><textarea id="descripcion" rows="4" maxlength="500" required></textarea></div>
+          <label class="check full"><input id="destacado" type="checkbox"> Mostrar en el inicio (se muestran los 4 más recientes marcados)</label>
+          <div class="actions full">
+            <button class="btn btn--gold" type="submit" id="save">Publicar proyecto</button>
+            <button class="btn btn--ghost" type="button" id="cancel" hidden>Cancelar edición</button>
+          </div>
+        </form>
+        <p class="msg" id="msg" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Proyectos publicados</h2>
+        <div id="list"><p class="hint">Cargando…</p></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

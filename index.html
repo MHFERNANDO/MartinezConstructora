@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/Styles.css">
+  <link rel="stylesheet" href="css/styles.css">
   <script>
     document.documentElement.classList.add('js');
     /* Seguro anti-bloqueo: si por cualquier motivo js/main.js no arranca,
@@ -437,7 +437,12 @@
       <button class="modal__close" type="button" data-close aria-label="Cerrar detalles del proyecto">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
-      <figure class="modal__media"><img id="modal-img" src="" alt=""></figure>
+      <div class="modal__media">
+        <figure class="gallery__stage"><img id="modal-img" src="" alt=""></figure>
+        <button class="gallery__nav gallery__nav--prev" type="button" data-gal="-1" aria-label="Foto anterior" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="gallery__nav gallery__nav--next" type="button" data-gal="1" aria-label="Foto siguiente" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        <div class="gallery__thumbs" id="gallery-thumbs" hidden></div>
+      </div>
       <div class="modal__body">
         <p class="modal__status" id="modal-status"></p>
         <h3 class="modal__title" id="modal-title"></h3>
@@ -452,7 +457,8 @@
     </div>
   </div>
 
-  <script src="js/Data.js" defer></script>
-  <script src="js/Main.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
