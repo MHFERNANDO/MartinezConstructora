@@ -1444,3 +1444,39 @@ body.is-ready .wa-float { transform: scale(1); }
   }
   .hero__line { stroke-dashoffset: 0; opacity: .45; }
 }
+
+/* ---------- Ajustes de contenido (v2) ---------- */
+/* Logo del menú más grande */
+.site-header .brand { gap: 1.05rem; }
+.site-header .brand__icon { width: 62px; height: 62px; }
+.site-header.is-scrolled .brand__icon { width: 50px; height: 50px; }
+.site-header .brand__name { font-size: 1.95rem; }
+.site-header .brand__tag { font-size: .92rem; letter-spacing: .5em; margin-top: .42rem; }
+.site-header.is-scrolled .brand__name { font-size: 1.7rem; }
+@media (max-width: 760px) {
+  .site-header .brand { gap: .75rem; }
+  .site-header .brand__icon, .site-header.is-scrolled .brand__icon { width: 48px; height: 48px; }
+  .site-header .brand__name, .site-header.is-scrolled .brand__name { font-size: 1.4rem; }
+  .site-header .brand__tag { font-size: .72rem; letter-spacing: .42em; margin-top: .3rem; }
+}
+
+/* Nosotros: texto largo */
+.about__text p { max-width: 60ch; }
+.about__text .about__closing {
+  margin-top: 1.75rem;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--gold);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+@media (min-width: 1041px) {
+  .about__grid { align-items: start; }
+  .about__media { position: sticky; top: 110px; }
+}
+
+/* Textos más largos en hero y proceso */
+.hero__lead { max-width: 54ch; }
+.step p { max-width: 36ch; }
+
+/* Evita el movimiento lateral en celular (las diapositivas inactivas se asomaban 4 px) */
+.slider__track { overflow: hidden; }
